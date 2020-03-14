@@ -5,7 +5,7 @@ from sudokualgorithm import sodokuSolver
 root = Tk()
 root.title("Sudoku Solver")
 root.maxsize(800,800)
-root.config(bg="black")
+root.config(bg='#34eb4f')
 
 board = [
     [7, 8, 0, 4, 0, 0, 1, 2, 0],
@@ -35,14 +35,14 @@ def drawBoard(board,p,q):
     for i in range(0,9):
         for j in range(0,9):
             canvas.create_text(offset+w/2 + j*w,offset+h/2 + i*h,text = str(board[i][j]), 
-                                font = ("Arial",20),fill=('green' if (i==p and j==q) else 'orange'))
+                                font = ("Arial",20),fill=('green' if (i==p and j==q) else '#eb3446'))
 
     root.update_idletasks()
 
 def start():
     global board
-    drawBoard(board,0,0)
     sodokuSolver(board,0,0,drawBoard)
+    startbtn["state"] = "disabled"
 
 frame = Frame(root, height = 200, width = 600)
 frame.grid(row = 0,column = 0, padx = 10,pady = 10)
@@ -51,5 +51,7 @@ startbtn.pack()
 
 canvas = Canvas(root, height = 600,width = 600,bg='white')
 canvas.grid(row = 1,column = 0, padx = 10, pady = 10)
+
+drawBoard(board,0,0)
 
 root.mainloop()
